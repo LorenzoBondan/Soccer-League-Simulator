@@ -1,8 +1,8 @@
 package br.com.projects.persistence.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +36,9 @@ public class Championship {
 
 	@OneToMany(mappedBy = "championship")
 	private List<MatchDay> matchDays = new ArrayList<>();
+
+	@OneToMany(mappedBy = "championship")
+	private List<PlayerStats> playerStats = new ArrayList<>();
 
 	public Championship(Integer id) {
 		this.id = id;

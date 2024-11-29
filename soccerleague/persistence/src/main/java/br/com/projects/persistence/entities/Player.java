@@ -1,10 +1,9 @@
 package br.com.projects.persistence.entities;
 
 import br.com.projects.persistence.entities.enums.PositionEnum;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +40,9 @@ public class Player {
 
 	@OneToMany(mappedBy = "player2")
 	private List<MatchEvent> matchEventsPlayer2 = new ArrayList<>();
+
+	@OneToMany(mappedBy = "player")
+	private List<PlayerStats> playerStats = new ArrayList<>();
 
 	public Player(Integer id){
 		this.id = id;

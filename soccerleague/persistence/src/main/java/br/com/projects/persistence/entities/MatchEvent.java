@@ -19,7 +19,7 @@ public class MatchEvent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "match_id")
 	private Match match;
 
@@ -28,11 +28,11 @@ public class MatchEvent {
 
 	private String description;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "player1_id")
 	private Player player1;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "player2_id")
 	private Player player2;
 

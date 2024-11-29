@@ -24,33 +24,33 @@ public class Team {
 	private String name;
 	private Integer members;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stadium_id")
 	private Stadium stadium;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "championship_id")
 	private Championship championship;
 
 	@OneToOne(mappedBy = "team")
 	private TeamAttachment teamAttachment;
 	
-	@OneToMany(mappedBy = "team")
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<Player> players = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "homeTeam")
+	@OneToMany(mappedBy = "homeTeam", fetch = FetchType.LAZY)
     private List<Match> matchesHome = new ArrayList<>();
 
-	@OneToMany(mappedBy = "awayTeam")
+	@OneToMany(mappedBy = "awayTeam", fetch = FetchType.LAZY)
 	private List<Match> matchesAway = new ArrayList<>();
 
-	@OneToMany(mappedBy = "team")
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<Placing> placings = new ArrayList<>();
 
-	@OneToMany(mappedBy = "team")
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<TrophyTeam> trophyTeams = new ArrayList<>();
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "tb_team_rival",
 				joinColumns = @JoinColumn(name = "team_id"), 
 				inverseJoinColumns = @JoinColumn(name = "rival_id")

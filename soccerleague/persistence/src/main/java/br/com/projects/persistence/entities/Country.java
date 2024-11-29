@@ -21,7 +21,7 @@ public class Country {
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "country")
+	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
 	private List<League> leagues = new ArrayList<>();
 
 	@OneToOne(mappedBy = "country")

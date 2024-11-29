@@ -18,11 +18,11 @@ public class TrophyAttachment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "trophy_id")
 	private Trophy trophy;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "attachment_id")
 	private Attachment attachment;
 

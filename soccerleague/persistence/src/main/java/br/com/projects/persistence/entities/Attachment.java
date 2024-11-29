@@ -20,7 +20,7 @@ public class Attachment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "binary_id")
 	private Binary binary;
 
@@ -30,22 +30,22 @@ public class Attachment {
 	@Column(columnDefinition = "TEXT")
 	private String checksum;
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<CountryAttachment> countryAttachments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<LeagueAttachment> leagueAttachments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<PlayerAttachment> playerAttachments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<TeamAttachment> teamAttachments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<StadiumAttachment> stadiumAttachments = new ArrayList<>();
 
-	@OneToMany(mappedBy = "attachment")
+	@OneToMany(mappedBy = "attachment", fetch = FetchType.LAZY)
 	private List<TrophyAttachment> trophyAttachments = new ArrayList<>();
 
 	public Attachment(Integer id) {

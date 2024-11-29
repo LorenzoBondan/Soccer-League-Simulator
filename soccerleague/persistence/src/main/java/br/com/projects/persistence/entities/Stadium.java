@@ -27,7 +27,7 @@ public class Stadium {
 	@OneToOne(mappedBy = "stadium")
 	private StadiumAttachment stadiumAttachment;
 
-	@OneToMany(mappedBy = "stadium")
+	@OneToMany(mappedBy = "stadium", fetch = FetchType.LAZY)
 	private List<Team> teams = new ArrayList<>();
 
 	public Stadium(Integer id) {

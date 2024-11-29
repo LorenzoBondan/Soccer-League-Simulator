@@ -20,24 +20,24 @@ public class Championship {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "league_id")
 	private League league;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "season_id")
 	private Season season;
 
-	@OneToMany(mappedBy = "championship")
+	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
 	private List<Placing> placings = new ArrayList<>();
 
-	@OneToMany(mappedBy = "championship")
+	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
 	private List<Team> teams = new ArrayList<>();
 
-	@OneToMany(mappedBy = "championship")
+	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
 	private List<MatchDay> matchDays = new ArrayList<>();
 
-	@OneToMany(mappedBy = "championship")
+	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
 	private List<PlayerStats> playerStats = new ArrayList<>();
 
 	public Championship(Integer id) {

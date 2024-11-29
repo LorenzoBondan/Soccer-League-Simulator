@@ -21,19 +21,19 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "home_Team_id")
 	private Team homeTeam;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "away_Team_id")
 	private Team awayTeam;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "match_day_id")
 	private MatchDay matchDay;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stadium_id")
 	private Stadium stadium;
 
@@ -43,7 +43,7 @@ public class Match {
 	private Integer homeTeamGoals;
 	private Integer awayTeamGoals;
 
-	@OneToMany(mappedBy = "match")
+	@OneToMany(mappedBy = "match", fetch = FetchType.LAZY)
 	private List<MatchEvent> matchEvents = new ArrayList<>();
 
 	public Match(Integer id) {

@@ -20,13 +20,13 @@ public class MatchDay {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "championship_id")
 	private Championship championship;
 
 	private Integer number;
 
-	@OneToMany(mappedBy = "matchDay")
+	@OneToMany(mappedBy = "matchDay", fetch = FetchType.LAZY)
 	private List<Match> matches = new ArrayList<>();
 
 	public MatchDay(Integer id) {

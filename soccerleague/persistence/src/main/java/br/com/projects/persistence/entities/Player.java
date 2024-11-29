@@ -28,20 +28,20 @@ public class Player {
 	@Enumerated(EnumType.STRING)
 	private PositionEnum position;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id")
 	private Team team;
 
 	@OneToOne(mappedBy = "player")
 	private PlayerAttachment playerAttachment;
 
-	@OneToMany(mappedBy = "player1")
+	@OneToMany(mappedBy = "player1", fetch = FetchType.LAZY)
 	private List<MatchEvent> matchEvents = new ArrayList<>();
 
-	@OneToMany(mappedBy = "player2")
+	@OneToMany(mappedBy = "player2", fetch = FetchType.LAZY)
 	private List<MatchEvent> matchEventsPlayer2 = new ArrayList<>();
 
-	@OneToMany(mappedBy = "player")
+	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
 	private List<PlayerStats> playerStats = new ArrayList<>();
 
 	public Player(Integer id){

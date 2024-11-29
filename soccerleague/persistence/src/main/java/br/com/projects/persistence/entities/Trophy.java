@@ -24,7 +24,7 @@ public class Trophy {
 	@OneToOne(mappedBy = "trophy")
 	private TrophyAttachment trophyAttachment;
 
-	@OneToMany(mappedBy = "trophy")
+	@OneToMany(mappedBy = "trophy", fetch = FetchType.LAZY)
 	private List<TrophyTeam> trophyTeams = new ArrayList<>();
 
 	public Trophy(Integer id) {

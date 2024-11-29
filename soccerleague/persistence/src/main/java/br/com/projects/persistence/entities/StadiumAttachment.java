@@ -18,11 +18,11 @@ public class StadiumAttachment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stadium_id")
 	private Stadium stadium;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "attachment_id")
 	private Attachment attachment;
 

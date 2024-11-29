@@ -21,14 +21,14 @@ public class League {
 	private Integer id;
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "country_id")
 	private Country country;
 
 	@OneToOne(mappedBy = "league")
 	private LeagueAttachment leagueAttachment;
 
-	@OneToMany(mappedBy = "league")
+	@OneToMany(mappedBy = "league", fetch = FetchType.LAZY)
 	private List<Championship> championships = new ArrayList<>();
 
 	public League(Integer id) {

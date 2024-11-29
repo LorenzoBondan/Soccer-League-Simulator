@@ -21,7 +21,7 @@ public class Season {
 	private Integer id;
 	private Integer seasonYear;
 
-	@OneToMany(mappedBy = "season")
+	@OneToMany(mappedBy = "season", fetch = FetchType.LAZY)
 	private List<Championship> championships = new ArrayList<>();
 
 	public Season(Integer id) {

@@ -1,6 +1,6 @@
 package br.com.projects.persistence.entities.enums;
 
-public enum MatchEventType {
+public enum MatchEventTypeEnum {
 
 	GOAL,
 	YELLOW_CARD,

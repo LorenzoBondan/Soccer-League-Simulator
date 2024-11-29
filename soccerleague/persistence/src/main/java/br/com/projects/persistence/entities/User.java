@@ -1,13 +1,11 @@
 package br.com.projects.persistence.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +19,7 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_user")
-public class User implements UserDetails, Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class User implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,9 +40,6 @@ public class User implements UserDetails, Serializable {
 	public User(Integer id) {
 		this.id = id;
 	}
-	
-	@Nullable
-	private Long favoriteTeamId;
 
 	// UserDetails
 

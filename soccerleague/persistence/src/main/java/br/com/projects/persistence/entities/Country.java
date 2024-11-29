@@ -21,11 +21,11 @@ public class Country {
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
-	private List<League> leagues = new ArrayList<>();
-
 	@OneToOne(mappedBy = "country")
 	private CountryAttachment countryAttachment;
+
+	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
+	private List<League> leagues = new ArrayList<>();
 
 	public Country(Integer id) {
 		this.id = id;

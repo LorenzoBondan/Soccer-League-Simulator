@@ -1,6 +1,6 @@
 package br.com.projects.persistence.entities;
 
-import br.com.projects.persistence.entities.enums.MatchEventTypeEnum;
+import br.com.projects.persistence.entities.enums.MatchEventType;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -24,7 +24,7 @@ public class MatchEvent {
 	private Match match;
 
 	@Enumerated(EnumType.STRING)
-	private MatchEventTypeEnum type;
+	private MatchEventType type;
 
 	private String description;
 

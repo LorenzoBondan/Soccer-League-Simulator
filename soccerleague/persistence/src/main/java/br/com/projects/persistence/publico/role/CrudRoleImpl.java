@@ -32,7 +32,7 @@ public class CrudRoleImpl implements CrudRole {
 
     @Override
     @Transactional(readOnly = true)
-    public Paged<DRole> buscarTodos(PageableRequest request) {
+    public Paged<DRole> findAll(PageableRequest request) {
         SpecificationHelper<Role> helper = new SpecificationHelper<>();
         Specification<Role> specification = helper.buildSpecification(request.getColunas(), request.getOperacoes(), request.getValores());
         
@@ -51,23 +51,23 @@ public class CrudRoleImpl implements CrudRole {
     }
 
     @Override
-    public DRole inserir(DRole obj) {
-        return null;
-    }
-
-    @Override
-    public DRole atualizar(DRole obj) {
-        return null;
-    }
-
-    @Override
-    public void remover(Integer obj) {
-
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public DRole buscar(Integer id) {
+    public DRole find(Integer id) {
         return adapter.toDomain(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Código não encontrado: " + id)));
+    }
+
+    @Override
+    public DRole insert(DRole obj) {
+        return null;
+    }
+
+    @Override
+    public DRole update(DRole obj) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer obj) {
+
     }
 }

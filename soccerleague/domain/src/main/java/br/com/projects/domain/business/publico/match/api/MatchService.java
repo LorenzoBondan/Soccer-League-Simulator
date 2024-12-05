@@ -1,4 +1,4 @@
 package br.com.projects.domain.business.publico.match.api;
 
-public interface MatchService extends CreateMatch, FindMatch, RemoveMatch, UpdateMatch {
+public interface MatchService extends CreateMatch, FindMatch, UpdateMatch, RemoveMatch {
 }

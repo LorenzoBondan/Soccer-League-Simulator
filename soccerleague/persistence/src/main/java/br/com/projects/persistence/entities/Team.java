@@ -26,12 +26,11 @@ public class Team {
 	@JoinColumn(name = "stadium_id")
 	private Stadium stadium;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "championship_id")
-	private Championship championship;
-
 	@OneToOne(mappedBy = "team")
 	private TeamAttachment teamAttachment;
+
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+	private List<ChampionshipTeam> championshipsTeam = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<Player> players = new ArrayList<>();

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DUser find(Integer id) {
-        return crudUser.buscar(id);
+        return crudUser.find(id);
     }
 
     @Override
@@ -30,21 +30,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Paged<DUser> find(PageableRequest request) {
-        return crudUser.buscarTodos(request);
+        return crudUser.findAll(request);
     }
 
     @Override
     public DUser incluir(DUser domain) {
         domain.validate();
-        validarRegistroDuplicado(domain);
-        return crudUser.inserir(domain);
+        validateDuplicatedResource(domain);
+        return crudUser.insert(domain);
     }
 
     @Override
     public DUser update(DUser domain) {
         domain.validate();
-        validarRegistroDuplicado(domain);
-        return crudUser.atualizar(domain);
+        validateDuplicatedResource(domain);
+        return crudUser.update(domain);
     }
 
     @Override
@@ -54,10 +54,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Integer id) {
-        crudUser.remover(id);
+        crudUser.delete(id);
     }
 
-    private void validarRegistroDuplicado(DUser domain){
+    private void validateDuplicatedResource(DUser domain){
         if(crudUser.findByEmail(domain.getEmail())
                 .stream()
                 .anyMatch(t -> !t.getId().equals(Optional.ofNullable(domain.getId()).orElse(-1)))){

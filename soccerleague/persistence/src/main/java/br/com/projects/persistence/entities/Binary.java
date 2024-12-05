@@ -4,6 +4,9 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
@@ -18,6 +21,9 @@ public class Binary {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private byte[] bytes;
+
+	@OneToMany(mappedBy = "binary", fetch = FetchType.LAZY)
+	private List<Attachment> attachments = new ArrayList<>();
 
 	public Binary(Integer id) {
 		this.id = id;

@@ -23,7 +23,7 @@ public class DBinary implements Descritivel {
         this.id = id;
     }
 
-    public void validar() throws ValidationException {
+    public void validate() throws ValidationException {
         new ValidationBuilder()
                 .add(new NamedValidator<>("Bytes", new ObjetoNaoNuloValidator()), this.bytes)
                 .validate();

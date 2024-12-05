@@ -7,13 +7,13 @@ package br.com.projects.domain;
  */
 public interface SimpleCrud<T, J>{
 
-    Paged<T> buscarTodos(PageableRequest request);
+    Paged<T> findAll(PageableRequest request);
 
-    T inserir(T obj);
+    T find(J obj);
 
-    T atualizar(T obj);
+    T insert(T obj);
 
-    void remover(J obj);
+    T update(T obj);
 
-    T buscar(J obj);
+    void delete(J obj);
 }

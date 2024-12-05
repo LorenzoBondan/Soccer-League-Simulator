@@ -7,5 +7,5 @@ import br.com.projects.domain.business.publico.match.DMatch;
 public interface FindMatch {
 
     DMatch find (Integer id);
-    Paged<DMatch> find(PageableRequest request);
+    Paged<DMatch> find (PageableRequest request);
 }

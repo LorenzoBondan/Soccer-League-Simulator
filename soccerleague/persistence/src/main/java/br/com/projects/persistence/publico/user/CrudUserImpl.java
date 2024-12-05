@@ -39,7 +39,7 @@ public class CrudUserImpl implements CrudUser {
 
     @Override
     @Transactional(readOnly = true)
-    public Paged<DUser> buscarTodos(PageableRequest request) {
+    public Paged<DUser> findAll(PageableRequest request) {
         SpecificationHelper<User> helper = new SpecificationHelper<>();
         Specification<User> specification = helper.buildSpecification(request.getColunas(), request.getOperacoes(), request.getValores());
 
@@ -64,19 +64,19 @@ public class CrudUserImpl implements CrudUser {
 
     @Override
     @Transactional(readOnly = true)
-    public DUser buscar(Integer id) {
+    public DUser find(Integer id) {
         return adapter.toDomain(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Código não encontrado: " + id)));
     }
 
     @Override
     @Transactional
-    public DUser inserir(DUser obj) {
+    public DUser insert(DUser obj) {
         return adapter.toDomain(repository.save(adapter.toEntity(obj)));
     }
 
     @Override
     @Transactional
-    public DUser atualizar(DUser obj) {
+    public DUser update(DUser obj) {
         if(!repository.existsById(obj.getId())){
             throw new ResourceNotFoundException("Código não encontrado: " + obj.getId());
         }
@@ -93,7 +93,7 @@ public class CrudUserImpl implements CrudUser {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public void remover(Integer id) {
+    public void delete(Integer id) {
         if (!repository.existsById(id)) {
             throw new ResourceNotFoundException("Id not found: " + id);
         }

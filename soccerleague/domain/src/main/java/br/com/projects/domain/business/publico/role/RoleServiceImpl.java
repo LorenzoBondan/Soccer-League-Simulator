@@ -17,11 +17,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Paged<DRole> find(PageableRequest request) {
-        return crudRole.buscarTodos(request);
+        return crudRole.findAll(request);
     }
 
     @Override
     public DRole find(Integer id) {
-        return crudRole.buscar(id);
+        return crudRole.find(id);
     }
 }

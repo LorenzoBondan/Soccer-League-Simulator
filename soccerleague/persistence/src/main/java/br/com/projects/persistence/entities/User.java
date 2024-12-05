@@ -20,13 +20,11 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	
-	@Column(unique = true)
 	private String email;
 	private String password;
 	

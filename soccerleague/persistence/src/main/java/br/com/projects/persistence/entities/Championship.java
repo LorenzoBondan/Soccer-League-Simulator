@@ -32,7 +32,7 @@ public class Championship {
 	private List<Placing> placings = new ArrayList<>();
 
 	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
-	private List<Team> teams = new ArrayList<>();
+	private List<ChampionshipTeam> championshipsTeam = new ArrayList<>();
 
 	@OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
 	private List<MatchDay> matchDays = new ArrayList<>();

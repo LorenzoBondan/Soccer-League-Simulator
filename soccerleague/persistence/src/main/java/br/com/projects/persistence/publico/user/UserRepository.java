@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,14 +33,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             WHERE tb_user.id = :userId
             """)
 	void updatePassword(@Param("password") String password, @Param("userId") Long userId);
-
-	@Query(nativeQuery = true, value = """
-            SELECT criadopor FROM tb_user WHERE id = :id
-            """)
-	String findCriadoporById(@Param("id") Integer id);
-
-	@Query(nativeQuery = true, value = """
-            SELECT criadoem FROM tb_user WHERE id = :id
-            """)
-	LocalDateTime findCriadoemById(@Param("id") Integer id);
 }

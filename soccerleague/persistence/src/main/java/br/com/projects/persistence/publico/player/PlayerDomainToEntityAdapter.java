@@ -1,24 +1,27 @@
 package br.com.projects.persistence.publico.player;
 
 import br.com.projects.domain.Convertable;
-import br.com.projects.domain.business.enums.DPositionEnum;
 import br.com.projects.domain.business.publico.player.DPlayer;
 import br.com.projects.persistence.entities.Player;
 import br.com.projects.persistence.entities.PlayerAttachment;
+import br.com.projects.persistence.entities.Position;
 import br.com.projects.persistence.entities.Team;
-import br.com.projects.persistence.entities.enums.PositionEnum;
 import br.com.projects.persistence.publico.playerattachment.PlayerAttachmentDomainToEntityAdapter;
+import br.com.projects.persistence.publico.position.PositionDomainToEntityAdapter;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class PlayerDomainToEntityAdapter implements Convertable<Player, DPlayer> {
 
     private final PlayerAttachmentDomainToEntityAdapter playerAttachmentDomainToEntityAdapter;
+    private final PositionDomainToEntityAdapter positionDomainToEntityAdapter;
 
-    public PlayerDomainToEntityAdapter(PlayerAttachmentDomainToEntityAdapter playerAttachmentDomainToEntityAdapter) {
+    public PlayerDomainToEntityAdapter(PlayerAttachmentDomainToEntityAdapter playerAttachmentDomainToEntityAdapter, PositionDomainToEntityAdapter positionDomainToEntityAdapter) {
         this.playerAttachmentDomainToEntityAdapter = playerAttachmentDomainToEntityAdapter;
+        this.positionDomainToEntityAdapter = positionDomainToEntityAdapter;
     }
 
     @Override
@@ -28,11 +31,13 @@ public class PlayerDomainToEntityAdapter implements Convertable<Player, DPlayer>
                 .name(domain.getName())
                 .nickname(domain.getNickname())
                 .birthDate(domain.getBirthDate())
-                .position(PositionEnum.valueOf(domain.getPosition().name()))
                 .team(new Team(domain.getTeam().getId()))
                 .playerAttachment(Optional.ofNullable(domain.getPlayerAttachment())
                         .map(playerAttachment -> new PlayerAttachment(playerAttachment.getId()))
                         .orElse(null))
+
+                .positions(domain.getPositions().stream().map(position -> new Position(position.getId())).collect(Collectors.toSet()))
+
                 .build();
     }
 
@@ -43,12 +48,12 @@ public class PlayerDomainToEntityAdapter implements Convertable<Player, DPlayer>
                 .name(entity.getName())
                 .nickname(entity.getNickname())
                 .birthDate(entity.getBirthDate())
-                .position(Optional.ofNullable(entity.getPosition())
-                        .map(positionEnum -> DPositionEnum.valueOf(positionEnum.name()))
-                        .orElse(null))
                 .playerAttachment(Optional.ofNullable(entity.getPlayerAttachment())
                         .map(playerAttachmentDomainToEntityAdapter::toDomain)
                         .orElse(null))
+
+                .positions(entity.getPositions().stream().map(positionDomainToEntityAdapter::toDomain).collect(Collectors.toList()))
+
                 .build();
     }
 }

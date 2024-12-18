@@ -11,4 +11,6 @@ import java.util.Collection;
 public interface PlayerStatsQueryRepository extends PagingAndSortingRepository<PlayerStats, Integer>, JpaSpecificationExecutor<PlayerStats> {
 
     Collection<PlayerStats> findByPlayer_IdAndChampionship_Id(Integer playerId, Integer championshipId);
+    Collection<PlayerStats> findByChampionship_IdOrderByGoalsDesc(Integer championshipId);
+
 }

@@ -22,7 +22,6 @@ public class DPlayerStats implements Descritivel {
     private DPlayer player;
     private DChampionship championship;
     private Integer goals;
-    private Integer assists;
     private Integer yellowCards;
     private Integer redCards;
 
@@ -36,8 +35,6 @@ public class DPlayerStats implements Descritivel {
                 .add(new NamedValidator<>("Championship", new ObjetoNaoNuloValidator()), this.championship)
                 .add(new NamedValidator<>("Goals", new ObjetoNaoNuloValidator()), this.goals)
                 .add(new NamedValidator<>("Goals", new NumeroMaiorOuIgualAZeroValidator()), this.goals)
-                .add(new NamedValidator<>("Assists", new ObjetoNaoNuloValidator()), this.assists)
-                .add(new NamedValidator<>("Assists", new NumeroMaiorOuIgualAZeroValidator()), this.assists)
                 .add(new NamedValidator<>("Yellow Cards", new ObjetoNaoNuloValidator()), this.yellowCards)
                 .add(new NamedValidator<>("Yellow Cards", new NumeroMaiorOuIgualAZeroValidator()), this.yellowCards)
                 .add(new NamedValidator<>("Red Cards", new ObjetoNaoNuloValidator()), this.redCards)

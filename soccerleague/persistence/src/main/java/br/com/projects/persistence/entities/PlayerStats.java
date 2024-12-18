@@ -26,7 +26,6 @@ public class PlayerStats {
 	private Championship championship;
 
 	private Integer goals;
-	private Integer assists;
 	private Integer yellowCards;
 	private Integer redCards;
 

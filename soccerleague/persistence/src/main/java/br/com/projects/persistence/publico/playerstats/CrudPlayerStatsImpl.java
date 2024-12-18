@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -58,6 +59,12 @@ public class CrudPlayerStatsImpl implements CrudPlayerStats {
     @Transactional(readOnly = true)
     public Collection<? extends DPlayerStats> findByPlayerAndChampionship(Integer playerId, Integer championshipId) {
         return queryRepository.findByPlayer_IdAndChampionship_Id(playerId, championshipId).stream().map(adapter::toDomain).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<? extends DPlayerStats> findTopScorersByChampionship(Integer championshipId) {
+        return queryRepository.findByChampionship_IdOrderByGoalsDesc(championshipId).stream().map(adapter::toDomain).toList();
     }
 
     @Override

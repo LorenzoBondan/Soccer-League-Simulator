@@ -7,6 +7,8 @@ import br.com.projects.domain.business.publico.playerstats.spi.CrudPlayerStats;
 import br.com.projects.domain.exceptions.UniqueConstraintViolationException;
 import br.com.projects.domain.metadata.DomainService;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @DomainService
@@ -26,6 +28,16 @@ public class PlayerStatsServiceImpl implements PlayerStatsService {
     @Override
     public Paged<DPlayerStats> find(PageableRequest request) {
         return crudPlayerStats.findAll(request);
+    }
+
+    @Override
+    public Collection<? extends DPlayerStats> findByPlayerAndChampionship(Integer playerId, Integer championshipId) {
+        return crudPlayerStats.findByPlayerAndChampionship(playerId, championshipId);
+    }
+
+    @Override
+    public Collection<? extends DPlayerStats> findTopScorersByChampionship(Integer championshipId) {
+        return crudPlayerStats.findTopScorersByChampionship(championshipId);
     }
 
     @Override

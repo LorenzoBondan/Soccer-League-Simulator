@@ -80,7 +80,6 @@ public class PlayerStatsController {
                         .columnMap(Map.of(
                                 "id", "id",
                                 "goals", "goals",
-                                "assists", "assists",
                                 "yellowCards", "yellowCards",
                                 "redCards", "redCards"
                                 ))
@@ -105,6 +104,22 @@ public class PlayerStatsController {
     }
 
     /**
+     * @param id represents the ID of the Championship to be searched
+     */
+    @Operation(summary = "Search top scorers by Championship id", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "404", description = "Not found")
+    })
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
+    @GetMapping(value = "/topscorers/{id}")
+    public ResponseEntity<?> searchTopScorersByChampionship(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(service.findTopScorersByChampionship(id));
+    }
+
+    /**
      * @param dto represents the PlayerStats object to be created
      */
     @Operation(summary = "Insert a new PlayerStats", method = "POST")
@@ -122,7 +137,7 @@ public class PlayerStatsController {
             @RequestBody
             @Schema(
                     description = "PlayerStats object for creation",
-                    requiredProperties = "player.id, championship.id, goals, assists, yellowCards, redCards",
+                    requiredProperties = "player.id, championship.id, goals, yellowCards, redCards",
                     example = """
                     {
                         "player": {
@@ -132,7 +147,6 @@ public class PlayerStatsController {
                             "id": 1
                         },
                         "goals": 10,
-                        "assists": 2,
                         "yellowCards": 2,
                         "redCards": 0
                     }
@@ -161,7 +175,7 @@ public class PlayerStatsController {
             @RequestBody
             @Schema(
                     description = "PlayerStats object for editing",
-                    requiredProperties = "id, player.id, championship.id, goals, assists, yellowCards, redCards",
+                    requiredProperties = "id, player.id, championship.id, goals, yellowCards, redCards",
                     example = """
                     {
                         "id": 1,
@@ -172,7 +186,6 @@ public class PlayerStatsController {
                             "id": 1
                         },
                         "goals": 10,
-                        "assists": 2,
                         "yellowCards": 2,
                         "redCards": 0
                     }

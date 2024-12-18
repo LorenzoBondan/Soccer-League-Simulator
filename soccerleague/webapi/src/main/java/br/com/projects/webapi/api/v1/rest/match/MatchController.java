@@ -222,4 +222,10 @@ public class MatchController {
 
         return failures.isEmpty() ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(response);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
+    @PostMapping("/simulate/{id}")
+    public ResponseEntity<?> simulateMatch(@PathVariable Integer id) {
+        return ResponseEntity.ok(service.simulate(id));
+    }
 }

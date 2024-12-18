@@ -8,4 +8,5 @@ import java.util.Collection;
 public interface CrudPlayerStats extends SimpleCrud<DPlayerStats, Integer> {
 
     Collection<? extends DPlayerStats> findByPlayerAndChampionship (Integer playerId, Integer championshipId);
+    Collection<? extends DPlayerStats> findTopScorersByChampionship (Integer championshipId);
 }

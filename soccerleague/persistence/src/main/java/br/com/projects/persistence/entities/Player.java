@@ -1,12 +1,13 @@
 package br.com.projects.persistence.entities;
 
-import br.com.projects.persistence.entities.enums.PositionEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Getter
@@ -25,8 +26,13 @@ public class Player {
 	private String nickname;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDate birthDate;
-	@Enumerated(EnumType.STRING)
-	private PositionEnum position;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "tb_player_position",
+			joinColumns = @JoinColumn(name = "player_id"),
+			inverseJoinColumns = @JoinColumn(name = "position_id")
+	)
+	private Set<Position> positions = new HashSet<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id")

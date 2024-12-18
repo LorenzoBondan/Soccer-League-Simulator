@@ -21,7 +21,6 @@ public class PlayerStatsDomainToEntityAdapter implements Convertable<PlayerStats
                 .player(new Player(domain.getPlayer().getId()))
                 .championship(new Championship(domain.getChampionship().getId()))
                 .goals(domain.getGoals())
-                .assists(domain.getAssists())
                 .yellowCards(domain.getYellowCards())
                 .redCards(domain.getRedCards())
                 .build();
@@ -38,7 +37,6 @@ public class PlayerStatsDomainToEntityAdapter implements Convertable<PlayerStats
                         .map(championship -> new DChampionship(championship.getId()))
                         .orElse(null))
                 .goals(entity.getGoals())
-                .assists(entity.getAssists())
                 .yellowCards(entity.getYellowCards())
                 .redCards(entity.getRedCards())
                 .build();

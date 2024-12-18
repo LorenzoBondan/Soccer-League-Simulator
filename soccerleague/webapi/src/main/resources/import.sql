@@ -29,17 +29,45 @@ INSERT INTO tb_team (name, stadium_id, members) VALUES ('Corinthians', 2, 25);
 INSERT INTO tb_team (name, stadium_id, members) VALUES ('Palmeiras', 1, 25);
 INSERT INTO tb_team (name, stadium_id, members) VALUES ('São Paulo', 2, 25);
 
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Goalkeeper', 'GK', 0);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Right Back', 'RB', 1);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Left Back', 'LB', 1);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Centre Back', 'CB', 1);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Defensive Midfielder', 'DMF', 2);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Centre Midfielder', 'CMF', 2);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Attacking Midfielder', 'AMF', 2);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Left Midfielder', 'LMF', 2);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Right Midfielder', 'RMF', 2);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Left Wing Forward', 'LWF', 3);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Right Wing Forward', 'RWF', 3);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Second Striker', 'SS', 3);
+INSERT INTO tb_position (name, acronym, field_zone) VALUES ('Centre Forward', 'CF', 3);
+
 -- Flamengo
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (1, 'Diego Alves', 'Diego', 'GOALKEEPER', '1985-06-24');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (1, 'Rodrigo Caio', 'Rodrigo', 'DEFENDER', '1993-10-07');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (1, 'Everton Ribeiro', 'Everton', 'MIDDLE_FIELD', '1989-03-10');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (1, 'Gabigol', 'Gabriel Barbosa', 'FORWARD', '1996-08-30');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (1, 'Diego Alves', 'Diego', '1985-06-24');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (1, 'Rodrigo Caio', 'Rodrigo', '1993-10-07');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (1, 'Everton Ribeiro', 'Everton', '1989-03-10');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (1, 'Gabigol', 'Gabriel Barbosa', '1996-08-30');
+
+INSERT INTO tb_player_position VALUES (1,1);
+INSERT INTO tb_player_position VALUES (2,4);
+INSERT INTO tb_player_position VALUES (3,7);
+INSERT INTO tb_player_position VALUES (3,8);
+INSERT INTO tb_player_position VALUES (3,9);
+INSERT INTO tb_player_position VALUES (4,13);
 
 -- Corinthians
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (2, 'Cássio', 'Cássio', 'GOALKEEPER', '1987-06-06');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (2, 'Gil', 'Gil', 'DEFENDER', '1986-09-04');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (2, 'Jô', 'Jô', 'MIDDLE_FIELD', '1987-10-20');
-INSERT INTO tb_player (team_id, name, nickname, position, birth_date) VALUES (2, 'Ramires', 'Ramires', 'FORWARD', '1987-03-24');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (2, 'Cássio', 'Cássio', '1987-06-06');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (2, 'Gil', 'Gil', '1986-09-04');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (2, 'Jô', 'Jô', '1987-10-20');
+INSERT INTO tb_player (team_id, name, nickname, birth_date) VALUES (2, 'Ramires', 'Ramires', '1987-03-24');
+
+INSERT INTO tb_player_position VALUES (5,1);
+INSERT INTO tb_player_position VALUES (6,4);
+INSERT INTO tb_player_position VALUES (7,13);
+INSERT INTO tb_player_position VALUES (8,5);
+INSERT INTO tb_player_position VALUES (8,6);
+INSERT INTO tb_player_position VALUES (8,7);
 
 INSERT INTO tb_match_day (championship_id, number) VALUES (1, 1);
 INSERT INTO tb_match_day (championship_id, number) VALUES (1, 2);
@@ -56,9 +84,9 @@ INSERT INTO tb_match_event (match_id, minute_match_event, player1_id, descriptio
 INSERT INTO tb_match_event (match_id, minute_match_event, player1_id, description, type) VALUES (2, 70, 7, 'Jô received a red card', 'RED_CARD');
 
 -- Flamengo vs Corinthians (Championship ID = 1)
-INSERT INTO tb_player_stats (player_id, championship_id, goals, assists, yellow_cards, red_cards) VALUES (4, 1, 1, 0, 1, 0);  -- Gabigol
+INSERT INTO tb_player_stats (player_id, championship_id, goals, yellow_cards, red_cards) VALUES (4, 1, 1, 1, 0);  -- Gabigol
 
-INSERT INTO tb_player_stats (player_id, championship_id, goals, assists, yellow_cards, red_cards) VALUES (2, 1, 0, 1, 1, 0);  -- Rodrigo Caio
+INSERT INTO tb_player_stats (player_id, championship_id, goals, yellow_cards, red_cards) VALUES (2, 1, 0, 1, 0);  -- Rodrigo Caio
 
 INSERT INTO tb_placing (championship_id, team_id, points, victories, draws, defeats, goals_scored, goals_conceded, goal_difference) VALUES (1, 1, 3, 1, 0, 0, 2, 1, 1);  -- Flamengo
 
